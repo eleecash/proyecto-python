@@ -60,3 +60,6 @@ if __name__ == "__main__":
         print("\nBoarding cards:")
         fl.print_boarding_cards()
         print()
+
+
+º   
