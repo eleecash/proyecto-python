@@ -42,6 +42,7 @@ class Aircraft:
     def num_seats(self):
         return self._num_rows * self._num_seats_per_row
     
+    
 
 
 
