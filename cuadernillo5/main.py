@@ -1,6 +1,6 @@
-from flight import Flight
-from aircraft import Aircraft, Airbus, Boeing
-from passenger import Passenger
+from Flight import Flight
+from Aircraft import Aircraft, Airbus, Boeing
+from Passenger import Passenger
 
 def make_flights():
     # Ejemplo 1: Un vuelo con la clase base Aircraft
@@ -39,12 +39,15 @@ def make_flights():
     p4 = Passenger("John", "Locke", "10265448H")
     p5 = Passenger("Sayid", "Jarrah", "15758664M")
 
-    # Asignamos pasajeros a algunos asientos en f1
+    # Asignamos pasajeros a algunos asientos en f1, f2 y f3
     f1.allocate_passenger("12A", p1.passenger_data())
     f1.allocate_passenger("18F", p2.passenger_data())
     f1.allocate_passenger("18E", p3.passenger_data())
     f1.allocate_passenger("1C",  p4.passenger_data())
     f1.allocate_passenger("4D",  p5.passenger_data())
+    f2.allocate_passenger("1A", p1.passenger_data())
+    f2.allocate_passenger("2B", p2.passenger_data())
+    f3.allocate_passenger("5F", p3.passenger_data())
 
     return f1, f2, f3
 
@@ -60,6 +63,4 @@ if __name__ == "__main__":
         print("\nBoarding cards:")
         fl.print_boarding_cards()
         print()
-
-
-º   
+ 
