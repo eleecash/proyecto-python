@@ -1,8 +1,28 @@
+# ============================================================================
+# Fichero: main.py
+# Autor: Elena Ruiz De La Blanca
+# Descripción: Módulo principal para probar las clases Flight, Aircraft, Airbus, Boeing y Passenger.
+# ============================================================================
+
+"""
+Módulo principal que define la función make_flights() para crear vuelos de
+ejemplo con distintos tipos de aeronaves (Aircraft, Airbus, Boeing) y asignar
+pasajeros (Passenger) a sus asientos. También se encarga de mostrar la
+información de cada vuelo.
+"""
+
 from Flight import Flight
 from Aircraft import Aircraft, Airbus, Boeing
 from Passenger import Passenger
 
 def make_flights():
+    """
+    Crea instancias de Flight con diferentes tipos de Aircraft (Aircraft base,
+    Boeing, Airbus) y asocia varios pasajeros a diferentes asientos en cada vuelo.
+
+    Returns:
+        tuple: (f1, f2, f3) con los tres vuelos creados.
+    """
     # Ejemplo 1: Un vuelo con la clase base Aircraft
     f1 = Flight(
         number="BA117",
@@ -45,11 +65,14 @@ def make_flights():
     f1.allocate_passenger("18E", p3.passenger_data())
     f1.allocate_passenger("1C",  p4.passenger_data())
     f1.allocate_passenger("4D",  p5.passenger_data())
+
     f2.allocate_passenger("1A", p1.passenger_data())
     f2.allocate_passenger("2B", p2.passenger_data())
+
     f3.allocate_passenger("5F", p3.passenger_data())
 
     return f1, f2, f3
+
 
 if __name__ == "__main__":
     f1, f2, f3 = make_flights()
@@ -63,4 +86,3 @@ if __name__ == "__main__":
         print("\nBoarding cards:")
         fl.print_boarding_cards()
         print()
- 

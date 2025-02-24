@@ -1,104 +1,196 @@
-# La clase Aircraft contiene información de la aeronave. 
-# De esta clase, cabe mencionar el método seating_plan() 
-# que genera una tupla con dos valores. El primero es una 
-# lista con el tamaño de filas + 1, siendo None el valor 
-# de cada elemento de la lista (ten en cuenta que estamos 
-# añadiendo un valor de más, pero que no será una fila 
-# real que esté disponible). El segundo es un string de 
-# letras (p.e. "ABCDEF"), que representa los asientos de 
-# cada fila. El método num_seats simplemente devuelve el 
-# número total de asientos reales que tiene la aeronave. 
-# A continuación, puedes ver la descripción de ambos métodos:
-# seating_plan()
-#"Generates a seating plan for the number of rows and seats per 
-#    Returns:
-#     rows: A list of Nones (size num_rows + 1).
-#seats: A string of letters such as "ABCDEF"  
-# num_seats()
-# Calculates the number of seats
-# Returns:
-# seats: The number of seats
-#  """
+# ============================================================================
+# Fichero: Aircraft.py
+# Autor: Elena Ruiz De La Blanca
+# Descripción: Clase Aircraft y subclases Airbus y Boeing para gestionar aviones
+# ============================================================================
 
-# ============================================================================
-# Fichero: aircraft.py
-# ============================================================================
+"""
+Módulo que define la clase base Aircraft y sus subclases Airbus y Boeing,
+utilizadas para representar diferentes tipos de aviones.
+"""
 
 class Aircraft:
+    """
+    Representa una aeronave genérica con un número de registro, modelo,
+    número de filas y número de asientos por fila.
+
+    Atributos:
+        __registration (str): Número de registro de la aeronave.
+        __model (str): Modelo de la aeronave (ej. 'Airbus A319').
+        __num_rows (int): Número de filas que contiene la aeronave.
+        __num_seats_per_row (int): Número de asientos en cada fila.
+    """
+
     def __init__(self, registration, model, num_rows, num_seats_per_row):
+        """
+        Inicializa una aeronave con la información básica.
+
+        Args:
+            registration (str): Número de registro de la aeronave.
+            model (str): Modelo de la aeronave.
+            num_rows (int): Número de filas que contiene la aeronave.
+            num_seats_per_row (int): Número de asientos en cada fila.
+
+        Raises:
+            ValueError: Si alguno de los parámetros no cumple las condiciones mínimas,
+                        por ejemplo:
+                        - registration vacío
+                        - model vacío
+                        - num_rows < 1
+                        - num_seats_per_row < 1
+        """
+        # Validaciones de ejemplo:
+        if not registration:
+            raise ValueError("El número de registro (registration) no puede estar vacío.")
+        if not model:
+            raise ValueError("El modelo de la aeronave (model) no puede estar vacío.")
+        if num_rows < 1:
+            raise ValueError(f"El número de filas (num_rows={num_rows}) debe ser al menos 1.")
+        if num_seats_per_row < 1:
+            raise ValueError(f"El número de asientos por fila (num_seats_per_row={num_seats_per_row}) debe ser al menos 1.")
+
         self.__registration = registration
         self.__model = model
         self.__num_rows = num_rows
         self.__num_seats_per_row = num_seats_per_row
 
     def get_registration(self):
+        """
+        Devuelve el número de registro de la aeronave.
+
+        Returns:
+            str: El número de registro de la aeronave.
+        """
         return self.__registration
 
     def get_model(self):
+        """
+        Devuelve el modelo de la aeronave.
+
+        Returns:
+            str: El modelo de la aeronave.
+        """
         return self.__model
 
     def get_num_rows(self):
+        """
+        Devuelve el número de filas de la aeronave.
+
+        Returns:
+            int: El número de filas.
+        """
         return self.__num_rows
 
     def get_num_seats_per_row(self):
+        """
+        Devuelve el número de asientos por fila.
+
+        Returns:
+            int: El número de asientos en cada fila.
+        """
         return self.__num_seats_per_row
 
     def seating_plan(self):
         """
-        Generates a seating plan for the number of rows and seats per row
+        Genera el plan de asientos para la aeronave.
 
         Returns:
-          rows (list): Una lista de None (tamaño num_rows + 1)
-          seats (str): Un string con tantas letras como asientos haya en cada fila
+            tuple:
+                - rows (list): Lista de None (tamaño num_rows + 1), 
+                  donde el índice 0 no se utiliza.
+                - seats (str): Cadena con las letras de asiento 
+                  (ej. 'ABCDEF' para 6 asientos por fila).
         """
         import string
-        # Creamos la lista de filas con None (tamaño num_rows + 1).
-        # El índice 0 no se usará para asientos reales.
         rows = [None] * (self.__num_rows + 1)
-
-        # Creamos el string de letras, por ejemplo "ABCDEF" para 6 asientos por fila.
         seats = string.ascii_uppercase[: self.__num_seats_per_row]
-
         return rows, seats
 
     def num_seats(self):
         """
-        Calculates the total number of seats
+        Calcula el número total de asientos de la aeronave.
 
         Returns:
-          int: Número total de asientos
+            int: El número total de asientos (num_rows * num_seats_per_row).
         """
         return self.__num_rows * self.__num_seats_per_row
 
 
 class Airbus(Aircraft):
     """
-    Subclase de Aircraft para un Airbus A319 (ejemplo).
-    Por defecto, suponemos 23 filas y 6 asientos por fila.
+    Subclase de Aircraft que representa un Airbus A319.
+    Por defecto, asume 23 filas y 6 asientos por fila.
+
+    Atributos adicionales:
+        __variant (str): Variante concreta del modelo Airbus.
     """
+
     def __init__(self, registration, variant):
+        """
+        Inicializa un Airbus A319 con valores por defecto para filas y asientos.
+
+        Args:
+            registration (str): Número de registro de la aeronave.
+            variant (str): Variante del Airbus (p.e. 'A319-100').
+
+        Raises:
+            ValueError: Si 'registration' está vacío o 'variant' está vacío.
+        """
+        # Validamos 'registration' antes de llamar a super().__init__:
+        if not registration:
+            raise ValueError("El número de registro (registration) no puede estar vacío (Airbus).")
+        if not variant:
+            raise ValueError("La variante (variant) no puede estar vacía para un Airbus.")
+
         # Llamamos a la superclase con los valores típicos de un Airbus A319
         super().__init__(registration, "Airbus A319", 23, 6)
         self.__variant = variant
 
     def get_variant(self):
+        """
+        Devuelve la variante específica del Airbus.
+
+        Returns:
+            str: La variante del Airbus (p.e. 'A319-100').
+        """
         return self.__variant
 
 
 class Boeing(Aircraft):
     """
-    Subclase de Aircraft para un Boeing 777 (ejemplo).
-    Por defecto, suponemos 56 filas y 9 asientos por fila.
+    Subclase de Aircraft que representa un Boeing 777.
+    Por defecto, asume 56 filas y 9 asientos por fila.
+
+    Atributos adicionales:
+        __airline (str): Aerolínea que opera este Boeing.
     """
+
     def __init__(self, registration, airline):
+        """
+        Inicializa un Boeing 777 con valores por defecto para filas y asientos.
+
+        Args:
+            registration (str): Número de registro de la aeronave.
+            airline (str): Aerolínea que opera el Boeing (p.e. 'Emirates').
+
+        Raises:
+            ValueError: Si 'registration' está vacío o 'airline' está vacío.
+        """
+        # Validaciones de ejemplo:
+        if not registration:
+            raise ValueError("El número de registro (registration) no puede estar vacío (Boeing).")
+        if not airline:
+            raise ValueError("La aerolínea (airline) no puede estar vacía para un Boeing.")
+
         # Llamamos a la superclase con los valores típicos de un Boeing 777
         super().__init__(registration, "Boeing 777", 56, 9)
         self.__airline = airline
 
     def get_airline(self):
+        """
+        Devuelve la aerolínea que opera este Boeing.
+
+        Returns:
+            str: La aerolínea que opera el avión.
+        """
         return self.__airline
-
-
-
-
-
