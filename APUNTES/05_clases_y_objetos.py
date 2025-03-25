@@ -35,13 +35,15 @@ class Persona:
         return edad >= 18
 
 # ============= HERENCIA =============
+# La herencia es un mecanismo que permite crear una nueva clase a partir de una clase existente.
+# La nueva clase hereda los atributos y métodos de la clase existente.
 
 class Empleado(Persona):
     """Ejemplo de herencia"""
     
     def __init__(self, nombre, edad, salario):
         """Constructor de la clase hija"""
-        # Llamar al constructor de la clase padre
+        # Llamar al constructor de la clase padre 
         super().__init__(nombre, edad)
         self.salario = salario
     
@@ -51,6 +53,7 @@ class Empleado(Persona):
         return f"{presentacion} y gano {self.salario}€"
 
 # ============= PROPIEDADES =============
+# Las propiedades son un mecanismo que permite acceder a los atributos de una clase de manera controlada.
 
 class CuentaBancaria:
     """Ejemplo de uso de propiedades"""

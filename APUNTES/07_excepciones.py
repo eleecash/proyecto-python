@@ -13,6 +13,7 @@ def ejemplos_basicos():
     print("\n=== EXCEPCIONES BÁSICAS ===")
     
     # Try-except simple
+    # El bloque try se ejecuta si no se produce ninguna excepción.
     print("\n1. Try-except básico:")
     try:
         numero = int("abc")
@@ -20,6 +21,7 @@ def ejemplos_basicos():
         print("Error: No se puede convertir 'abc' a número")
     
     # Try-except con múltiples excepciones
+    # El bloque except se ejecuta si se produce una excepción del tipo especificado.
     print("\n2. Múltiples excepciones:")
     try:
         lista = [1, 2, 3]
@@ -30,6 +32,8 @@ def ejemplos_basicos():
         print("Error: División por cero")
     
     # Try-except-else-finally
+    # El bloque else se ejecuta si no se produce ninguna excepción.
+    # El bloque finally se ejecuta siempre, ya sea que se produzca una excepción o no.
     print("\n3. Try-except-else-finally:")
     try:
         numero = int("123")
@@ -94,6 +98,8 @@ def ejemplos_avanzados():
         print(f"Capturado nuevamente: {e}")
 
 # ============= CONTEXTOS Y WITH =============
+# El contexto es un bloque de código que se ejecuta antes y después de la ejecución de un bloque de código.
+# with es una palabra clave que se utiliza para manejar contextos.
 
 def ejemplos_with():
     """Ejemplos de manejo de contextos con with"""

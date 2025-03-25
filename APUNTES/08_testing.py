@@ -11,6 +11,7 @@ import pytest
 from typing import List, Optional
 
 # ============= CLASE A TESTEAR =============
+# La clase a testear es una clase simple que tiene métodos para sumar, dividir y listar números pares.
 
 class Calculadora:
     """Clase simple para demostrar testing"""
@@ -28,6 +29,7 @@ class Calculadora:
         return [x for x in range(0, hasta + 1, 2)]
 
 # ============= UNITTEST =============
+# unittest es una biblioteca que permite crear tests para Python.
 
 class TestCalculadora(unittest.TestCase):
     """Tests usando unittest"""
@@ -58,7 +60,7 @@ class TestCalculadora(unittest.TestCase):
         self.assertEqual(len(self.calc.lista_numeros_pares(10)), 6)
 
 # ============= PYTEST =============
-
+# pytest es una biblioteca que permite crear tests para Python.
 # Para ejecutar estos tests: pytest nombre_archivo.py
 
 def test_suma_pytest():
@@ -85,6 +87,7 @@ def test_lista_pares_pytest(numero, esperado):
     assert calc.lista_numeros_pares(numero) == esperado
 
 # ============= FIXTURES =============
+# Los fixtures son una forma de proporcionar datos o configuraciones comunes a los tests.
 
 @pytest.fixture
 def calculadora():
@@ -96,6 +99,7 @@ def test_usando_fixture(calculadora):
     assert calculadora.suma(2, 3) == 5
 
 # ============= MOCK =============
+# Los mocks son una forma de simular el comportamiento de un objeto.
 
 from unittest.mock import Mock, patch
 
